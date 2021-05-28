@@ -1,0 +1,22 @@
+version: "2"
+services:
+  node-app:
+    restart: always
+    build: .
+    ports: 
+      - "3000:3000"
+    environment: 
+      - PORT_NO=3000
+      - PG_PASSWORD=password
+      - PG_HOST=postgres
+      - PG_USER=postgres
+      - PG_PORT=5432
+    depends_on: 
+      - postgres
+  postgres:
+    image: 'postgres:latest'
+    environment: 
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+  
